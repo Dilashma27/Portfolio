@@ -270,6 +270,89 @@
     });
   }
 
+  /* ── CV viewer ───────────────────────────────────────────── */
+
+  const cvModal = doc.getElementById("cvModal");
+  const cvFrame = doc.getElementById("cvFrame");
+  const cvOpenLink = doc.getElementById("openCvBtn");
+
+  if (cvModal && cvOpenLink) {
+    const cvCloseBtn = cvModal.querySelector(".cv-modal-close");
+    let cvLastFocused = null;
+
+    const cvFocusable = () =>
+      Array.from(
+        cvModal.querySelectorAll(
+          'a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((el) => el === cvFrame || el.offsetParent !== null);
+
+    const openCvModal = () => {
+      cvLastFocused = doc.activeElement;
+      if (cvFrame && !cvFrame.getAttribute("src")) {
+        cvFrame.setAttribute("src", cvFrame.dataset.src);
+      }
+      cvModal.hidden = false;
+      root.classList.add("cv-open");
+      doc.body.classList.add("cv-open");
+      window.setTimeout(() => {
+        if (cvCloseBtn) cvCloseBtn.focus({ preventScroll: true });
+      }, 40);
+    };
+
+    const closeCvModal = () => {
+      cvModal.hidden = true;
+      root.classList.remove("cv-open");
+      doc.body.classList.remove("cv-open");
+      if (cvLastFocused && cvLastFocused.focus) {
+        cvLastFocused.focus({ preventScroll: true });
+      }
+    };
+
+    cvOpenLink.addEventListener("click", (event) => {
+      // Let modified clicks open the standalone CV in a new tab as usual.
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      openCvModal();
+    });
+
+    cvModal.querySelectorAll("[data-close-cv]").forEach((el) => {
+      el.addEventListener("click", closeCvModal);
+    });
+
+    // The embedded CV asks the parent to close when Escape is pressed inside the frame.
+    window.addEventListener("message", (event) => {
+      if (event.origin !== window.location.origin) return;
+      if (!cvFrame || event.source !== cvFrame.contentWindow) return;
+      if (event.data && event.data.type === "cv:close") closeCvModal();
+    });
+
+    doc.addEventListener("keydown", (event) => {
+      if (cvModal.hidden) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeCvModal();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = cvFocusable();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && doc.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && doc.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+  }
+
   /* ── Hero spotlight (fine pointers only) ─────────────────── */
 
   const spotlight = doc.getElementById("spotlight");

@@ -2117,6 +2117,269 @@ strong {
   color: var(--accent);
 }
 
+/* ── CV ────────────────────────────────────────────────────── */
+
+.cv {
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(720px 420px at 82% 6%, rgba(126, 240, 180, 0.05), transparent 62%),
+    var(--bg-soft);
+}
+
+.cv-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.75fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 56px);
+  overflow: hidden;
+  padding: clamp(32px, 4.6vw, 58px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background:
+    radial-gradient(80% 130% at 100% 0%, rgba(126, 240, 180, 0.08), transparent 58%),
+    #0b0f0c;
+}
+
+.cv-card > *:not(.cv-watermark) {
+  position: relative;
+  z-index: 1;
+}
+
+.cv-card .section-label {
+  margin-bottom: 14px;
+}
+
+.cv-card .section-title {
+  margin-bottom: 0;
+}
+
+.cv-lede {
+  max-width: 46ch;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.cv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.cv-note {
+  margin-top: 14px;
+  color: var(--muted-2);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cv-facts {
+  padding-left: clamp(24px, 3vw, 36px);
+  border-left: 1px solid var(--line);
+}
+
+.cv-facts dl {
+  display: grid;
+  gap: 15px;
+  margin: 0;
+}
+
+.cv-facts dt {
+  margin-bottom: 2px;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.cv-facts dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.cv-watermark {
+  position: absolute;
+  right: -8px;
+  bottom: -68px;
+  z-index: 0;
+  color: rgba(255, 255, 255, 0.022);
+  font-family: var(--font-display);
+  font-size: 15rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── CV viewer ─────────────────────────────────────────────── */
+
+.cv-modal[hidden] {
+  display: none;
+}
+
+.cv-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 3vw, 34px);
+}
+
+.cv-modal-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 6, 4, 0.84);
+  backdrop-filter: blur(9px);
+  animation: fade-in 0.3s var(--ease);
+}
+
+.cv-modal-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(1000px, 100%);
+  max-height: min(92vh, 1100px);
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  border-radius: 20px;
+  background: #0a0e0b;
+  box-shadow: 0 44px 130px rgba(0, 0, 0, 0.66);
+  animation: cv-modal-in 0.4s var(--ease);
+}
+
+.cv-modal-head {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px 12px 20px;
+  border-bottom: 1px solid var(--line);
+  background: #0b0f0c;
+}
+
+.cv-modal-title {
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cv-modal-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.cv-modal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.cv-modal-link svg {
+  width: 12px;
+  height: 12px;
+}
+
+.cv-modal-link:hover {
+  border-color: var(--accent-line);
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.cv-modal-link--icon {
+  padding: 7px;
+}
+
+.cv-modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.cv-modal-close svg {
+  width: 14px;
+  height: 14px;
+}
+
+.cv-modal-close:hover {
+  border-color: rgba(255, 120, 120, 0.4);
+  background: rgba(255, 120, 120, 0.08);
+  color: #ffb4b4;
+}
+
+.cv-modal-body {
+  flex: 1;
+  min-height: 0;
+  background: #eef3ef;
+}
+
+.cv-frame {
+  display: block;
+  width: 100%;
+  height: min(80vh, 940px);
+  border: 0;
+  background: #eef3ef;
+}
+
+html.cv-open,
+html.cv-open body {
+  overflow: hidden;
+}
+
+@keyframes cv-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* ── Reveal & keyframes ────────────────────────────────────── */
 
 .js .reveal {
@@ -2342,6 +2605,23 @@ strong {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .cv-card {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .cv-facts {
+    padding-top: 24px;
+    padding-left: 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .cv-facts dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 24px;
+  }
+
   .contact-card {
     border-radius: 22px;
   }
@@ -2430,6 +2710,63 @@ strong {
 
   .featured-caption {
     font-size: 8px;
+  }
+
+  .cv-card {
+    padding: 28px 22px 30px;
+    border-radius: 22px;
+  }
+
+  .cv-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cv-actions .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .cv-facts dl {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .cv-watermark {
+    font-size: 9rem;
+    bottom: -38px;
+  }
+
+  .cv-modal {
+    padding: 0;
+  }
+
+  .cv-modal-panel {
+    width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .cv-modal-head {
+    padding: 10px 12px;
+  }
+
+  .cv-modal-title {
+    font-size: 12px;
+  }
+
+  .cv-modal-link {
+    padding: 7px;
+  }
+
+  .cv-modal-link span {
+    display: none;
+  }
+
+  .cv-frame {
+    height: calc(100dvh - 55px);
   }
 
   .contact-card {

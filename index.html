@@ -79,7 +79,7 @@
         <a class="nav-link" href="#about">About</a>
         <a class="nav-link" href="#skills">Skills</a>
         <a class="nav-link" href="#projects">Projects</a>
-        <a class="nav-link" href="cv.html">CV</a>
+        <a class="nav-link" href="#cv">CV</a>
         <a class="nav-link" href="#contact">Contact</a>
         <a class="nav-mobile-cta" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
       </nav>
@@ -557,11 +557,61 @@
       </div>
     </section>
 
+    <!-- ───────────────────────────── CV ───────────────────────────── -->
+    <section class="section cv" id="cv">
+      <div class="container">
+        <div class="cv-card reveal">
+          <div class="cv-copy">
+            <p class="section-label"><span>04</span> Résumé</p>
+            <h2 class="section-title">My <span class="accent">CV</span>.</h2>
+            <p class="cv-lede">
+              The one-page version: projects, technical skills and education. Read it right here in
+              the browser, or download the PDF if you'd like to keep it.
+            </p>
+            <div class="cv-actions">
+              <a class="btn btn-primary" id="openCvBtn" href="cv.html" target="_blank" rel="noopener" data-open-cv>
+                Open CV
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+              </a>
+              <a class="btn btn-ghost" href="assets/Dilashma-CV.pdf" download="Dilashma-Jha-CV.pdf">
+                Download CV
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 12l5 5 5-5M5 21h14"/></svg>
+              </a>
+            </div>
+            <p class="cv-note">Reads in the browser — no download needed</p>
+          </div>
+
+          <div class="cv-facts" aria-label="CV at a glance">
+            <dl>
+              <div>
+                <dt>Education</dt>
+                <dd>B.Sc. (Hons.) Computing</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Full-stack &amp; mobile</dd>
+              </div>
+              <div>
+                <dt>Core stack</dt>
+                <dd>React · Node.js · PostgreSQL · Kotlin</dd>
+              </div>
+              <div>
+                <dt>Format</dt>
+                <dd>One page · A4 PDF</dd>
+              </div>
+            </dl>
+          </div>
+
+          <span class="cv-watermark" aria-hidden="true">CV</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ───────────────────────────── CONTACT ───────────────────────────── -->
     <section class="section contact" id="contact">
       <div class="container">
         <div class="contact-card reveal">
-          <p class="section-label"><span>04</span> Contact</p>
+          <p class="section-label"><span>05</span> Contact</p>
           <h2 class="contact-title">Let's build <br />something <span class="accent">together</span>.</h2>
           <p class="contact-lede">
             Have a project, a role, or just want to say hi? I'm always happy to talk about software,
@@ -620,6 +670,31 @@
       </a>
     </div>
   </footer>
+
+  <!-- ───────────────────────────── CV VIEWER ───────────────────────────── -->
+  <div class="cv-modal" id="cvModal" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle" hidden>
+    <div class="cv-modal-scrim" data-close-cv></div>
+    <div class="cv-modal-panel">
+      <div class="cv-modal-head">
+        <p class="cv-modal-title" id="cvModalTitle">Dilashma Jha — CV</p>
+        <div class="cv-modal-actions">
+          <a class="cv-modal-link" href="assets/Dilashma-CV.pdf" download="Dilashma-Jha-CV.pdf" aria-label="Download CV as PDF">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 12l5 5 5-5M5 21h14"/></svg>
+            <span>Download PDF</span>
+          </a>
+          <a class="cv-modal-link cv-modal-link--icon" href="cv.html" target="_blank" rel="noopener" aria-label="Open CV in a new tab">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M10 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></svg>
+          </a>
+          <button class="cv-modal-close" type="button" data-close-cv aria-label="Close CV">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="cv-modal-body">
+        <iframe class="cv-frame" id="cvFrame" title="Dilashma Jha — CV" data-src="cv.html?embed=1" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
 
   <script src="assets/js/main.js" defer></script>
 </body>

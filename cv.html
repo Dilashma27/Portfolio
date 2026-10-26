@@ -11,6 +11,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/cv.css" />
+  <script>
+    // When opened inside the portfolio viewer, drop the standalone toolbar and
+    // let Escape close the parent modal even while focus sits inside this frame.
+    if (new URLSearchParams(window.location.search).get("embed") === "1") {
+      document.documentElement.classList.add("cv-embed");
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && window.parent !== window) {
+          window.parent.postMessage({ type: "cv:close" }, window.location.origin);
+        }
+      });
+    }
+  </script>
 </head>
 <body>
   <header class="toolbar">

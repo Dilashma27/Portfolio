@@ -4,8 +4,9 @@ A personal portfolio built as a fast, dependency-free static site. Dark, minimal
 
 ## What's inside
 
-- Single-page layout: hero, about, skills, projects, contact
-- A separate one-page CV at `cv.html`, with a print-ready A4 PDF download
+- Single-page layout: hero, about, skills, projects, CV, contact
+- A separate one-page CV at `cv.html`, readable in an in-page viewer or downloadable as a print-ready A4 PDF
+- CV viewer opens without downloading: an in-page modal with focus trap, `Escape` to close, and links to download or open in a new tab
 - Real project content linked to [github.com/Dilashma27](https://github.com/Dilashma27)
 - A CSS-built DigitalMenu dashboard mock (no screenshots required)
 - Technology ticker with local brand logos (no external icon CDN)
@@ -24,7 +25,7 @@ A personal portfolio built as a fast, dependency-free static site. Dark, minimal
 ├── assets/
 │   ├── css/styles.css      # Design system, layout, responsive styles
 │   ├── css/cv.css          # CV layout and A4 print styles
-│   ├── js/main.js          # Navigation, reveal, copy-email, spotlight
+│   ├── js/main.js          # Navigation, reveal, copy-email, spotlight, CV viewer
 │   ├── img/tech/           # Technology logos used in the ticker
 │   ├── img/projects/       # Cover photography for the project cards
 │   ├── Dilashma-CV.pdf     # Generated A4 PDF, linked from the site
@@ -125,6 +126,8 @@ with build command empty and publish directory `.`.
 - No web fonts are blocked on rendering; the page uses `display=swap`
 - Project cover photos are local WebP files with dark scrims, so text stays readable
 - The CV has its own A4 print stylesheet and a selectable, text-based PDF
+- The CV viewer loads `cv.html?embed=1`, which hides the standalone toolbar; `Escape` closes it and
+  focus returns to the **Open CV** button
 - Everything is static HTML, CSS, and a single small JS file
 
 ## Next ideas
