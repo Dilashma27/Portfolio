@@ -891,7 +891,7 @@ strong {
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: marquee 38s linear infinite;
+  animation: marquee 46s linear infinite;
 }
 
 .ticker:hover .ticker-track {
@@ -911,6 +911,22 @@ strong {
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.ticker-logo {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+  opacity: 0.95;
 }
 
 .ticker-group i {
@@ -1728,9 +1744,40 @@ strong {
   position: relative;
   height: 178px;
   overflow: hidden;
+  isolation: isolate;
   background:
     radial-gradient(110% 120% at 18% 0%, rgba(var(--ca), 0.23), transparent 62%),
     linear-gradient(150deg, #0f1511, #090c0a 62%);
+}
+
+.cover-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(0.5) contrast(1.03) brightness(0.6);
+  transform: scale(1.015);
+  transition: transform 0.9s var(--ease), filter 0.9s var(--ease);
+}
+
+.project-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(7, 9, 8, 0.42) 0%, rgba(7, 9, 8, 0.62) 46%, rgba(7, 9, 8, 0.94) 100%),
+    radial-gradient(120% 110% at 12% 0%, rgba(var(--ca), 0.32), transparent 60%);
+  pointer-events: none;
+}
+
+.project-card:hover .cover-img,
+.project-card:focus-within .cover-img {
+  filter: grayscale(0.32) contrast(1.05) brightness(0.7);
+  transform: scale(1.06);
 }
 
 .project-cover::after {
@@ -1738,6 +1785,7 @@ strong {
   position: absolute;
   right: -20%;
   bottom: -60%;
+  z-index: 2;
   width: 78%;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -1761,17 +1809,19 @@ strong {
 .cover-grid {
   position: absolute;
   inset: 0;
+  z-index: 2;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
   background-size: 28px 28px;
-  opacity: 0.65;
+  opacity: 0.5;
   -webkit-mask-image: radial-gradient(ellipse 85% 85% at 40% 40%, #000, transparent 80%);
   mask-image: radial-gradient(ellipse 85% 85% at 40% 40%, #000, transparent 80%);
 }
 
 .cover-glyph {
   position: absolute;
+  z-index: 3;
   left: 22px;
   bottom: 14px;
   color: rgba(var(--ca), 0.94);
@@ -1785,6 +1835,7 @@ strong {
 
 .cover-label {
   position: absolute;
+  z-index: 3;
   top: 15px;
   left: 16px;
   padding: 4px 7px;
@@ -1800,6 +1851,7 @@ strong {
 
 .cover-year {
   position: absolute;
+  z-index: 3;
   top: 17px;
   right: 16px;
   color: var(--muted-2);
@@ -1859,140 +1911,6 @@ strong {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-}
-
-/* ── Now ───────────────────────────────────────────────────── */
-
-.now {
-  border-top: 1px solid var(--line);
-  background:
-    radial-gradient(700px 400px at 10% 10%, rgba(126, 240, 180, 0.035), transparent 60%),
-    var(--bg-soft);
-}
-
-.now-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
-  align-items: start;
-  gap: 70px;
-}
-
-.now .section-head {
-  margin-bottom: 0;
-}
-
-.now-list {
-  border-top: 1px solid var(--line);
-}
-
-.now-item {
-  display: grid;
-  grid-template-columns: 10px minmax(0, 1fr) auto;
-  align-items: start;
-  gap: 18px;
-  padding: 25px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.now-marker {
-  position: relative;
-  display: block;
-  width: 9px;
-  height: 9px;
-  margin-top: 7px;
-  border: 1px solid var(--accent);
-  border-radius: 50%;
-}
-
-.now-marker::after {
-  content: "";
-  position: absolute;
-  inset: 2px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.8;
-}
-
-.now-marker--open {
-  background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(126, 240, 180, 0.08);
-}
-
-.now-label {
-  margin-bottom: 6px;
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.now-copy h3 {
-  margin-bottom: 6px;
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-}
-
-.now-copy p {
-  max-width: 50ch;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.68;
-}
-
-.now-status {
-  padding: 4px 8px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 8.5px;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-}
-
-.now-status--open {
-  border-color: var(--accent-line);
-  background: var(--accent-dim);
-  color: var(--accent);
-}
-
-.radar {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  margin-top: 50px;
-  padding: 18px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.radar-label {
-  flex: 0 0 auto;
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.radar-items {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.radar-items i {
-  margin: 0 8px;
-  color: var(--accent);
-  font-style: normal;
-}
-
-.radar-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--line), transparent);
 }
 
 /* ── Contact ───────────────────────────────────────────────── */
@@ -2346,15 +2264,6 @@ strong {
     max-width: 520px;
   }
 
-  .now-layout {
-    grid-template-columns: 1fr;
-    gap: 38px;
-  }
-
-  .now .section-head {
-    margin-bottom: 0;
-  }
-
   .contact-watermark {
     font-size: 20rem;
     bottom: -110px;
@@ -2523,25 +2432,6 @@ strong {
     font-size: 8px;
   }
 
-  .now-item {
-    grid-template-columns: 10px minmax(0, 1fr);
-    gap: 14px;
-  }
-
-  .now-status {
-    grid-column: 2;
-    justify-self: start;
-  }
-
-  .radar {
-    flex-wrap: wrap;
-    gap: 12px 18px;
-  }
-
-  .radar-line {
-    display: none;
-  }
-
   .contact-card {
     padding: 30px 22px;
   }
@@ -2590,6 +2480,11 @@ strong {
 
   .ticker-group span {
     font-size: 9.5px;
+  }
+
+  .ticker-logo {
+    width: 14px;
+    height: 14px;
   }
 }
 

@@ -78,7 +78,6 @@
   const staggerGroups = [
     [".skills-grid", ".skill-card", 55],
     [".project-grid", ".project-card", 80],
-    [".now-list", ".now-item", 70],
   ];
 
   staggerGroups.forEach(([groupSelector, itemSelector, step]) => {

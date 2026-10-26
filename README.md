@@ -4,9 +4,12 @@ A personal portfolio built as a fast, dependency-free static site. Dark, minimal
 
 ## What's inside
 
-- Single-page layout: hero, about, skills, projects, "right now", contact
+- Single-page layout: hero, about, skills, projects, contact
+- A separate one-page CV at `cv.html`, with a print-ready A4 PDF download
 - Real project content linked to [github.com/Dilashma27](https://github.com/Dilashma27)
 - A CSS-built DigitalMenu dashboard mock (no screenshots required)
+- Technology ticker with local brand logos (no external icon CDN)
+- Project covers backed by optimised local photography
 - Responsive mobile navigation with keyboard support
 - Scroll progress, active navigation, reveal-on-scroll animation
 - Copy-email button and reduced-motion support
@@ -17,9 +20,14 @@ A personal portfolio built as a fast, dependency-free static site. Dark, minimal
 ```
 .
 ├── index.html              # All page content
+├── cv.html                 # One-page CV (screen + print)
 ├── assets/
 │   ├── css/styles.css      # Design system, layout, responsive styles
+│   ├── css/cv.css          # CV layout and A4 print styles
 │   ├── js/main.js          # Navigation, reveal, copy-email, spotlight
+│   ├── img/tech/           # Technology logos used in the ticker
+│   ├── img/projects/       # Cover photography for the project cards
+│   ├── Dilashma-CV.pdf     # Generated A4 PDF, linked from the site
 │   └── favicon.svg         # "D" monogram favicon
 ├── README.md
 └── .gitignore
@@ -42,18 +50,31 @@ Then visit `http://localhost:8000`.
 
 ## Before you publish — quick customisation checklist
 
-1. **Name and email** — search for `Dilashma` and `dilashmajha@gmail.com` in `index.html`.
+1. **Name, email, and phone** — search for `Dilashma`, `dilashmajha@gmail.com`, and `9765457855` in `index.html`.
 2. **GitHub links** — currently point to `github.com/Dilashma27`. Update any repo links if the
    repository names change.
-3. **Project descriptions** — the DigitalMenu, UK District Insights, DigitalMenu Mobile, and
+3. **Project descriptions** — the DigitalMenu, DigitalMenu Mobile, Portfolio Website, and
    Python/Flutter Labs cards are based on the public repos. Adjust the wording if you want to
    highlight different details.
 4. **Quick facts** — edit the "Studying", "Focus", "Currently learning", and "Status" rows in
    the About section.
 5. **Skills** — the six cards in the Skills section are easy to reorder or trim.
-6. **"Right now"** — update this section each semester so the portfolio stays current.
-7. **Meta tags** — update the `<title>`, description, and Open Graph tags in `<head>`.
-8. **Favicon** — replace `assets/favicon.svg` if you want a different mark.
+6. **CV** — update the content in `cv.html`, then regenerate the PDF (see below).
+7. **Project covers** — replace the WebP files in `assets/img/projects/` to use your own photos.
+8. **Meta tags** — update the `<title>`, description, and Open Graph tags in `<head>`.
+9. **Favicon** — replace `assets/favicon.svg` if you want a different mark.
+
+### Regenerating the CV PDF
+
+Open `cv.html` in Chrome and choose **Print → Save as PDF** (A4, margins: none, background
+graphics on), or use headless Chrome:
+
+```bash
+chrome --headless --print-to-pdf=assets/Dilashma-CV.pdf --no-pdf-header-footer cv.html
+```
+
+The CV is laid out to fit a single A4 page; the print styles in `assets/css/cv.css` handle the
+page size and hide the on-screen toolbar.
 
 ### Changing the accent colour
 
@@ -102,12 +123,13 @@ with build command empty and publish directory `.`.
 - Mobile menu supports `Escape`, focus return, and a simple focus trap
 - All animation is disabled when the visitor prefers reduced motion
 - No web fonts are blocked on rendering; the page uses `display=swap`
+- Project cover photos are local WebP files with dark scrims, so text stays readable
+- The CV has its own A4 print stylesheet and a selectable, text-based PDF
 - Everything is static HTML, CSS, and a single small JS file
 
 ## Next ideas
 
 - Add real screenshots of DigitalMenu (drop them into `assets/img/` and use `<img>` inside the
   project cards)
-- Add a downloadable CV (`assets/dilashma-cv.pdf`) and a "Résumé" link in the nav
 - Add a short case-study page for DigitalMenu if you want to go deeper than a card
 - Add a `sitemap.xml` and Open Graph image once the final domain is known
