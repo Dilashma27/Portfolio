@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Dilashma">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b9fbd6"/>
+      <stop offset="1" stop-color="#7ef0b4"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="#070908"/>
+  <rect x="1" y="1" width="62" height="62" rx="14" fill="none" stroke="#263029"/>
+  <path d="M21 15h12.5C44.4 15 52 22 52 32s-7.6 17-18.5 17H21V15Zm9.5 8.5v17h3c5.4 0 8.8-3.3 8.8-8.5s-3.4-8.5-8.8-8.5h-3Z" fill="url(#g)"/>
+</svg>

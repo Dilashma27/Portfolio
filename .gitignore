@@ -1,0 +1,17 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Dependencies (not used, but harmless)
+node_modules/
+
+# Deployment
+.vercel/
+.netlify/
+
+# Logs
+*.log
+npm-debug.log*
